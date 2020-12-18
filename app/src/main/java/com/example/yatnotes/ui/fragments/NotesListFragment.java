@@ -1,5 +1,6 @@
-package com.example.yatnotes.ui;
+package com.example.yatnotes.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import com.example.yatnotes.R;
 import com.example.yatnotes.adapter.NotesRecyclerAdapter;
 import com.example.yatnotes.model.Note;
+import com.example.yatnotes.ui.activities.AddNoteActivity;
 import com.example.yatnotes.viewmodel.NotesViewModel;
 import com.example.yatnotes.viewmodel.NotesViewModelFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,7 +19,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -37,34 +38,30 @@ public class NotesListFragment extends Fragment implements NotesRecyclerAdapter.
     private NotesRecyclerAdapter notesRecyclerAdapter;
     private NotesViewModel notesViewModel;
 
-
-    private NavController navController;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes_list, container, false);
-    }
-
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view =  inflater.inflate(R.layout.fragment_notes_list, container, false);
 
         initView(view);
 
         initRecyclerView();
 
-        loadNotes();
-
         swipeToDeleteAndUndo();
 
         fab.setOnClickListener(view1 -> {
-            navController.navigate(R.id.action_notesListFragment_to_addNoteFragment);
+            startActivity(new Intent(getActivity() , AddNoteActivity.class));
         });
 
+        return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadNotes();
+    }
 
     private void loadNotes() {
         notesViewModel = new ViewModelProvider(getActivity(),
@@ -89,10 +86,9 @@ public class NotesListFragment extends Fragment implements NotesRecyclerAdapter.
     }
 
     private void initView(@NonNull View view) {
-        navController = Navigation.findNavController(view);
         recyclerView = view.findViewById(R.id.recycler_view);
-        fab = view.findViewById(R.id.fab);
         constraintLayout = view.findViewById(R.id.constraint_layout);
+        fab = view.findViewById(R.id.fab);
     }
 
 
@@ -139,13 +135,12 @@ public class NotesListFragment extends Fragment implements NotesRecyclerAdapter.
 
     @Override
     public void onItemClick(int id, String title, String content, String time) {
-        NotesListFragmentDirections.ActionNotesListFragmentToAddNoteFragment action =
-                NotesListFragmentDirections.actionNotesListFragmentToAddNoteFragment();
-        action.setId(id);
-        action.setTitle(title);
-        action.setContent(content);
-        action.setTime(time);
-        action.setIsEdit(true);
-        navController.navigate(action);
+        Intent intent = new Intent(getActivity() , AddNoteActivity.class);
+        intent.putExtra("oldId" , id);
+        intent.putExtra("oldTitle" , title);
+        intent.putExtra("oldContent" , content);
+        intent.putExtra("oldTime" , time);
+        intent.putExtra("isEdit" , true);
+        startActivity(intent);
     }
 }
