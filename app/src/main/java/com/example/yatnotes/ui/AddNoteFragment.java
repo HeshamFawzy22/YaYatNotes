@@ -94,7 +94,7 @@ public class AddNoteFragment extends Fragment implements View.OnClickListener {
         titleS = etTitle.getText().toString();
         contentS = etContent.getText().toString();
 
-        if (ValidatedForm()){
+        if (validatedForm()){
             Note note = new Note(titleS,contentS,choosedTime);
             notesViewModel.addNote(note).observe(getViewLifecycleOwner(), isAdded -> {
                 if(isAdded) {
@@ -114,19 +114,21 @@ public class AddNoteFragment extends Fragment implements View.OnClickListener {
         String newTitle , newContent;
         newTitle = etTitle.getText().toString();
         newContent = etContent.getText().toString();
-        Note currentNote = new Note(oldId ,  newTitle , newContent, choosedTime);
+        if (validatedForm()) {
+            Note currentNote = new Note(oldId, newTitle, newContent, choosedTime);
 //            currentNote.setId(oldId);
 //            currentNote.setTitle(etTitle.getText().toString());
 //            currentNote.setContent(etContent.getText().toString());
 //            currentNote.setTime(tvTime.getText().toString());
-        notesViewModel.updateNote(currentNote).observe(getViewLifecycleOwner(), isUpdated -> {
-            if (isUpdated){
-                showMessage(R.string.updated, R.string.ok, (dialogInterface, i) ->
-                        dialogInterface.dismiss(), false);
-            }
-        });
-        isEdit = false;
-        addNoteBtn.setText("Add");
+            notesViewModel.updateNote(currentNote).observe(getViewLifecycleOwner(), isUpdated -> {
+                if (isUpdated) {
+                    showMessage(R.string.updated, R.string.ok, (dialogInterface, i) ->
+                            dialogInterface.dismiss(), false);
+                }
+            });
+            isEdit = false;
+            addNoteBtn.setText("Add");
+        }
     }
 
     private void addNoteDate() {
@@ -159,7 +161,7 @@ public class AddNoteFragment extends Fragment implements View.OnClickListener {
     }
 
     boolean full;
-    public boolean ValidatedForm(){
+    public boolean validatedForm(){
         String titleS = etTitle.getText().toString();
         String contentS = etContent.getText().toString();
         full = false;
