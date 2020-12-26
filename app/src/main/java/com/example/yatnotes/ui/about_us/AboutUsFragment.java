@@ -1,4 +1,4 @@
-package com.example.yatnotes.ui.fragments;
+package com.example.yatnotes.ui.about_us;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.yatnotes.R;
-import com.example.yatnotes.viewmodel.AboutUsViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +23,7 @@ public class AboutUsFragment extends Fragment {
         aboutUsViewModel =
                 new ViewModelProvider(this).get(AboutUsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_about_us, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        final TextView textView = root.findViewById(R.id.text_about_us);
         aboutUsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

@@ -1,13 +1,14 @@
 <resources>
-    <string name="app_name">Yat Notes</string>
+    <string name="app_name">Notes</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
+
     <string name="first_fragment_label">First Fragment</string>
+    <!-- Strings used for fragments for navigation -->
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
+
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="note_added_successfully">Note Added Successfuly!</string>
     <string name="ok">OK</string>
@@ -20,7 +21,46 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_course">Courses</string>
 
     <string name="menu_note">Notes</string>
     <string name="menu_about_us">About us</string>
+    <string name="about_us">About us</string>
+    <string name="course_id" translatable="false">courseId</string>
+    <string name="note_id" translatable="false">noteId</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_notes">Notes</string>
+    <string name="menu_courses">Courses</string>
+    <string name="is_edit">is_edit</string>
+    <string name="failed_to_delete_course">Failed to delete the course</string>
+    <string name="failed_to_delete_note">Failed to delete the note</string>
+    <string name="delete_course_confirmation">Are you sure to delete this course ?</string>
+    <string name="yes">yes</string>
+    <string name="No">no</string>
+    <string name="course_added_successfully">Course added successfully!</string>
+    <string name="course_updated_successfully">Course updated successfully!</string>
+    <string name="failed_to_add_course">Failed to add the course</string>
+    <string name="failed_to_update_course">Failed to update the course</string>
+    <string name="delete_note_confirmation">Are you sure to delete this note ?</string>
+    <string name="failed_to_add_note">Failed to add note</string>
+    <string name="failed_to_update_note">Failed to update note</string>
+    <string name="note_updated_successfully">Note updated successfully</string>
+    <string name="update_course">Update Course</string>
+    <string name="new_note">New Note</string>
+    <string name="update_note">Update Note</string>
+    <string name="new_course">New Course</string>
+    <string name="update">update</string>
+    <string name="add">add</string>
+    <string name="course_name">Course Name</string>
+    <string name="description">Description</string>
+    <string name="note_title">Note Title</string>
+    <string name="content">Content</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="courses">
+        <item>Android</item>
+        <item>IOS</item>
+        <item>Web Development</item>
+        <item>Flutter</item>
+    </string-array>
 </resources>

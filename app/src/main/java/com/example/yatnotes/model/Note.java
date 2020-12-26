@@ -3,28 +3,26 @@ package com.example.yatnotes.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "notes")
 public class Note {
     @PrimaryKey(autoGenerate = true)
-    int id;
-    String title;
-    String content;
-    String time;
+    private int id;
+    private int courseId;
+    private String title;
+    private String content;
 
-    public Note() {
+    public int getCourseId() {
+        return courseId;
     }
 
-    public Note(String title, String content, String time) {
-        this.title = title;
-        this.content = content;
-        this.time = time;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
-    public Note(int id, String title, String content, String time) {
-        this.id = id;
+    public Note(int courseId, String title, String content) {
+        this.courseId = courseId;
         this.title = title;
         this.content = content;
-        this.time = time;
     }
 
     public int getId() {
@@ -49,13 +47,5 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 }

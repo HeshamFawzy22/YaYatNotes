@@ -1,4 +1,4 @@
-package com.example.yatnotes.viewmodel;
+package com.example.yatnotes.ui.about_us;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
